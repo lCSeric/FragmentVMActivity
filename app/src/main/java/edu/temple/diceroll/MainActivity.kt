@@ -6,6 +6,8 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -15,6 +17,11 @@ class MainActivity : AppCompatActivity() {
 
         // Retrieve ViewModel
         val viewModel = ViewModelProvider(this)[DiceViewModel::class.java]
+
+
+        viewModel.diceValue.observe(this, { value ->
+            numberDisplay.text = value
+        })
 
         // Fragment created using factory method and added dynamically using fragmentTransaction
         // argument is the number of sides the die will have
